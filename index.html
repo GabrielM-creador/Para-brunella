@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Sonia 💖</title>
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',cursive;
+  background:linear-gradient(135deg,#ffe6f0,#fff0f5);
+  overflow-x:hidden;
+  text-align:center;
+  transition:1s;
+}
+
+/* INTRO CORAZÓN */
+.intro{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,#ffd6e7,#ffc2dc);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+  visibility:hidden;
+  opacity:0;
+}
+.intro.show{
+  visibility:visible;
+  opacity:1;
+}
+.corazonGrande{
+  font-size:120px;
+  animation:latido 1s infinite;
+}
+@keyframes latido{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.3);}
+  100%{transform:scale(1);}
+}
+
+/* CINEMÁTICA */
+.cinema{
+  position:fixed;
+  inset:0;
+  background:black;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+  letter-spacing:3px;
+  opacity:0;
+  visibility:hidden;
+}
+.cinema.show{
+  animation:fadeInOut 4s forwards;
+}
+
+/* TEXTOS */
+.containerTextos{
+  position:relative;
+  width:360px;
+  margin:20px auto;
+}
+.circleText{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  border-radius:50%;
+  background:white;
+  border:3px solid #ff66b2;
+  padding:10px;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+  margin:10px auto;
+  width:300px;
+  height:auto;
+}
+.circleText:hover{transform:scale(1.1);}
+
+/* BOTONES */
+button{
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:25px;
+  background:#ff99cc;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{background:#ff66b2;}
+.hidden{display:none;}
+
+/* LLUVIA */
+.heart, .flower, .photoRain{
+  position:fixed;
+  top:-50px;
+  font-size:20px;
+  animation:fall linear forwards;
+  z-index:999;
+}
+@keyframes fall{
+  to{transform:translateY(100vh);}
+}
+
+/* EXPLOSIÓN */
+.explode{
+  position:fixed;
+  font-size:25px;
+  animation:boom 1s ease-out forwards;
+  z-index:999;
+}
+@keyframes boom{
+  0%{transform:scale(0);}
+  100%{transform:scale(2) translateY(-50px);opacity:0;}
+}
+
+/* FOTOS */
+.photo{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  clip-path: polygon(50% 90%, 90% 50%, 75% 20%, 50% 35%, 25% 20%, 10% 50%);
+  border:4px solid #ff66b2;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+/* PANDITA */
+#panda{
+  margin-top:20px;
+  cursor:pointer;
+  font-size:80px;
+}
+
+/* MENSAJE FINAL */
+#mensajeFinal{
+  margin-top:20px;
+  font-weight:bold;
+  font-size:18px;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="intro">
+  <div class="corazonGrande">💖</div>
+</div>
+
+<div id="cine" class="cinema">✨ Una historia especial para Sonia ✨</div>
+
+<div class="container">
+
+<!-- TÍTULO PRINCIPAL -->
+<h1 id="tituloPrincipal" style="margin-bottom:20px; font-size:28px; color:#ff66b2;">Para Sonia 💖</h1>
+<button id="btnMusica1" onclick="reproducirMusica1()" style="display:inline-block;">Reproducir Música 💖</button>
+
+<!-- TEXTOS INICIALES -->
+<div class="containerTextos" id="textosCirculo"></div>
+<div style="text-align:center; margin-top:20px;">
+  <button id="btnContinuar" onclick="continuar()" style="display:none;">Continuar</button>
+</div>
+
+<!-- RESTO -->
+<div id="resto" class="hidden">
+
+<br>
+<h2>¿Te gustaría compartir más momentos juntos? 💖</h2>
+<button onclick="lluviaFotos()">SI 💘</button>
+<button onclick="alert('Igual me encanta compartir contigo 💕')">NO 😅</button>
+
+<br><br><br>
+
+<h2>¿Tengo oportunidad de robarte tu corazón? 💌</h2>
+<div id="botonesFinal">
+  <button onclick="respuestaFinal('si')">SI ❤️</button>
+  <button onclick="respuestaFinal('no')">NO 😳</button>
+</div>
+<button onclick="restaurarPregunta()">Restaurar Pregunta 2</button>
+
+<div id="mensajeFinal"></div>
+
+<br><br>
+
+<h2 id="tituloPregunta3" style="display:none;">Responde si quieres 💌</h2>
+<p id="pregunta3" style="display:none;">¿Quieres ser mi San Valentín? 💘</p>
+<div id="botonesPregunta3" style="display:none;">
+  <button onclick="respuestaPregunta3('si')">SI ❤️</button>
+  <button onclick="respuestaPregunta3('no')">NO 😳</button>
+</div>
+<button onclick="restaurarPregunta3()" style="display:none;" id="restaurar3">Restaurar Pregunta 3</button>
+
+<!-- PANDA CON CARTA -->
+<div id="panda" onclick="abrirCarta()">🐼💌</div>
+
+<!-- BOTÓN FINAL DE DESPEDIDA -->
+<button onclick="lluviaFinal()">Despedida 🌈</button>
+
+</div>
+</div>
+
+<!-- AUDIOS -->
+<audio id="audio1" src="tu_musica1.mp3"></audio>
+<audio id="audio2" src="tu_musica2.mp3"></audio>
+
+<script>
+// ===== CARGA INICIAL =====
+window.onload=function(){
+  document.getElementById("resto").classList.add("hidden");
+  crearTextoInicial();
+
+  // Pregunta 3 guardada
+  const resp3 = localStorage.getItem("respuestaPregunta3");
+  if(resp3){
+    mostrarPregunta3();
+    if(resp3 === 'si'){
+      document.getElementById("tituloPrincipal").innerText = "Sonia aceptó 💖";
+      document.getElementById("botonesPregunta3").style.display = 'none';
+    } else {
+      document.getElementById("botonesPregunta3").style.display = 'none';
+    }
+    document.getElementById("restaurar3").style.display='inline-block';
+  }
+
+  // Pregunta 2 guardada
+  const resp2 = localStorage.getItem("respuestaSonia");
+  if(resp2){
+    mostrarPregunta3();
+    mostrarResultado(resp2);
+  }
+};
+
+// ===== MÚSICA =====
+function reproducirMusica1(){
+  document.getElementById("audio1").play();
+  document.getElementById("btnMusica1").style.display='none';
+}
+
+// ===== TEXTOS INICIALES =====
+function crearTextoInicial(){
+  let textos=['Sonia 💖, tu sonrisa ilumina todo.','Contigo todo se siente más bonito ✨'];
+  let container=document.getElementById("textosCirculo");
+  container.innerHTML="";
+  for(let i=0;i<textos.length;i++){
+    let div=document.createElement("div");
+    div.className='circleText';
+    div.innerHTML=textos[i];
+    div.onclick=function(){lluviaTextoMini();};
+    container.appendChild(div);
+  }
+  document.getElementById("btnContinuar").style.display='inline-block';
+}
+
+// ===== TEXTOS RESTANTES =====
+function crearTextoRestante(){
+  let textos=['Eres alguien muy especial para mí 💕','si pudiera regalarte una estrella por cada vez que pienso en ti, el cielo estaria vacio🌸','Me encanta compartir momentos contigo💗'];
+  let container=document.getElementById("textosCirculo");
+  for(let i=0;i<textos.length;i++){
+    let div=document.createElement("div");
+    div.className='circleText';
+    div.innerHTML=textos[i];
+    div.onclick=function(){lluviaTextoMini();};
+    container.appendChild(div);
+  }
+}
+
+// ===== CONTINUAR =====
+function continuar(){
+  document.getElementById("btnContinuar").style.display='none';
+
+  for(let i=0;i<20;i++){
+    let flower=document.createElement("div");
+    flower.className="flower";
+    flower.innerHTML=Math.random()>0.5?'🌻':'🌼';
+    flower.style.left=Math.random()*100+"vw";
+    flower.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(flower);
+    setTimeout(()=>flower.remove(),5000);
+  }
+
+  let intro=document.getElementById("intro");
+  intro.classList.add("show");
+  setTimeout(()=>{
+    intro.classList.remove("show");
+    document.getElementById("cine").classList.add("show");
+    setTimeout(()=>{
+      document.getElementById("resto").classList.remove("hidden");
+      lluvia('💗');
+      crearTextoRestante();
+    },4000);
+  },3000);
+}
+
+// ===== LLUVIA =====
+function lluvia(emoji='💗'){
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML=emoji;
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  },300);
+}
+
+function lluviaFotos(){
+  document.body.style.background="url('fondo.jpg') no-repeat center/cover";
+  let fotos=['foto1.jpg','foto2.jpg'];
+  for(let i=0;i<10;i++){
+    let f=document.createElement("img");
+    f.src=fotos[Math.floor(Math.random()*fotos.length)];
+    f.className='photoRain';
+    f.style.left=Math.random()*100+'vw';
+    f.style.width='100px';
+    f.style.height='100px';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),5000);
+  }
+  lluvia('❤️'); lluvia('😍'); lluvia('🥰');
+}
+
+function lluviaTextoMini(){
+  for(let i=0;i<15;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    let emojis=['❤️','😍','🥰'];
+    h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+
+// ===== PREGUNTA 2 =====
+function respuestaFinal(opcion){
+  if(localStorage.getItem("respuestaSonia")) return;
+  localStorage.setItem("respuestaSonia",opcion);
+  mostrarResultado(opcion);
+}
+
+function mostrarResultado(opcion){
+  let cont=document.getElementById("botonesFinal");
+  cont.innerHTML="";
+  let msg=document.getElementById("mensajeFinal");
+
+  if(opcion==="si"){
+    document.body.style.background="linear-gradient(135deg,#ff99cc,#ff4da6)";
+    document.getElementById("audio2").play();
+    for(let i=0;i<30;i++){
+      let boom=document.createElement("div");
+      boom.className="explode";
+      boom.innerHTML="❤️";
+      boom.style.left=Math.random()*100+"vw";
+      boom.style.top=Math.random()*100+"vh";
+      document.body.appendChild(boom);
+      setTimeout(()=>boom.remove(),1000);
+    }
+    msg.innerHTML=`💖 Mensaje Secreto 💖 <br><br>Sonia... esto es solo para ti 🌸 <br>No quiero robar tu corazón... <br>quiero cuidarlo todos los días 💕`;
+  }else{
+    for(let i=0;i<30;i++){
+      let boom=document.createElement("div");
+      boom.className="explode";
+      boom.innerHTML=Math.random()>0.5?'😳':'😅';
+      boom.style.left=Math.random()*100+"vw";
+      boom.style.top=Math.random()*100+"vh";
+      document.body.appendChild(boom);
+      setTimeout(()=>boom.remove(),1000);
+    }
+    msg.innerHTML=`🎯 MISIÓN RECONQUISTA ACTIVADA 🎯 <br><br>Objetivo: Conquistar el corazón de Sonia 💘 <br>Rendirse: Jamás 😎🔥`;
+  }
+
+  mostrarPregunta3();
+}
+
+function restaurarPregunta(){
+  let codigo=prompt("Ingresa el código para restaurar:");
+  if(codigo==='631068'){
+    let cont=document.getElementById("botonesFinal");
+    cont.innerHTML=`<button onclick="respuestaFinal('si')">SI ❤️</button>
+                     <button onclick="respuestaFinal('no')">NO 😳</button>`;
+    document.getElementById("mensajeFinal").innerHTML="";
+    localStorage.removeItem("respuestaSonia");
+  }else{
+    alert("Código incorrecto ❌");
+  }
+}
+
+// ===== PREGUNTA 3 =====
+function respuestaPregunta3(opcion){
+  if(localStorage.getItem("respuestaPregunta3")) return;
+  localStorage.setItem("respuestaPregunta3", opcion);
+
+  if(opcion === 'si'){
+    document.getElementById("tituloPrincipal").innerText = "Sonia aceptó 💖";
+  }
+  document.getElementById("botonesPregunta3").style.display='none';
+}
+
+function mostrarPregunta3(){
+  document.getElementById("tituloPregunta3").style.display='block';
+  document.getElementById("pregunta3").style.display='block';
+  document.getElementById("botonesPregunta3").style.display='block';
+  document.getElementById("restaurar3").style.display='inline-block';
+}
+
+function restaurarPregunta3(){
+  let codigo=prompt("Ingresa el código para restaurar:");
+  if(codigo==='631068'){
+    document.getElementById("tituloPregunta3").innerText="Responde si quieres 💌";
+    document.getElementById("botonesPregunta3").style.display='block';
+    document.getElementById("restaurar3").style.display='none';
+    document.getElementById("tituloPrincipal").innerText="Para Sonia 💖";
+    localStorage.removeItem("respuestaPregunta3");
+  }else{
+    alert("Código incorrecto ❌");
+  }
+}
+
+// ===== PANDA =====
+function abrirCarta(){
+  alert("Sonia 💌\n\nQuiero decirte que cada día me haces sonreír más... ❤️");
+}
+
+// ===== DESPEDIDA =====
+function lluviaFinal(){
+  document.getElementById("mensajeFinal").innerHTML="🌟 Te deseo un hermoso día, Sonia! 🫂🌈";
+  let emojis=['❤️','😍','🥰','🌻','🌼'];
+  let fotos=['foto1.jpg','foto2.jpg'];
+  for(let i=0;i<50;i++){
+    let e=document.createElement("div");
+    e.className="heart";
+    e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),5000);
+
+    let f=document.createElement("img");
+    f.src=fotos[Math.floor(Math.random()*fotos.length)];
+    f.className='photoRain';
+    f.style.left=Math.random()*100+'vw';
+    f.style.width='100px';
+    f.style.height='100px';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),5000);
+  }
+}
+</script>
+</body>
+</html>
