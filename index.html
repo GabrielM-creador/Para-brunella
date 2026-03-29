@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para Sonia 💖</title>
+<title>Para Brunella💖</title>
 <style>
 body{
   margin:0;
@@ -159,12 +159,12 @@ button:hover{background:#ff66b2;}
   <div class="corazonGrande">💖</div>
 </div>
 
-<div id="cine" class="cinema">✨ Una historia especial para Sonia ✨</div>
+<div id="cine" class="cinema">✨ Que manca eres Brunella xd ✨</div>
 
 <div class="container">
 
 <!-- TÍTULO PRINCIPAL -->
-<h1 id="tituloPrincipal" style="margin-bottom:20px; font-size:28px; color:#ff66b2;">Para Sonia 💖</h1>
+<h1 id="tituloPrincipal" style="margin-bottom:20px; font-size:28px; color:#ff66b2;">Para Brunella 💖</h1>
 <button id="btnMusica1" onclick="reproducirMusica1()" style="display:inline-block;">Reproducir Música 💖</button>
 
 <!-- TEXTOS INICIALES -->
@@ -226,7 +226,7 @@ window.onload=function(){
   if(resp3){
     mostrarPregunta3();
     if(resp3 === 'si'){
-      document.getElementById("tituloPrincipal").innerText = "Sonia aceptó 💖";
+      document.getElementById("tituloPrincipal").innerText = "brunella aceptó 💖";
       document.getElementById("botonesPregunta3").style.display = 'none';
     } else {
       document.getElementById("botonesPregunta3").style.display = 'none';
@@ -235,7 +235,7 @@ window.onload=function(){
   }
 
   // Pregunta 2 guardada
-  const resp2 = localStorage.getItem("respuestaSonia");
+  const resp2 = localStorage.getItem("respuestaBrunella");
   if(resp2){
     mostrarPregunta3();
     mostrarResultado(resp2);
@@ -250,7 +250,7 @@ function reproducirMusica1(){
 
 // ===== TEXTOS INICIALES =====
 function crearTextoInicial(){
-  let textos=['Sonia 💖, tu sonrisa ilumina todo.','Contigo todo se siente más bonito ✨'];
+  let textos=['Brunella💖, tu sonrisa ilumina todo.','Contigo todo se siente más bonito ✨'];
   let container=document.getElementById("textosCirculo");
   container.innerHTML="";
   for(let i=0;i<textos.length;i++){
@@ -369,7 +369,7 @@ function mostrarResultado(opcion){
       document.body.appendChild(boom);
       setTimeout(()=>boom.remove(),1000);
     }
-    msg.innerHTML=`💖 Mensaje Secreto 💖 <br><br>Sonia... esto es solo para ti 🌸 <br>No quiero robar tu corazón... <br>quiero cuidarlo todos los días 💕`;
+    msg.innerHTML=`💖 Mensaje Secreto 💖 <br><br>Brunella... esto es solo para ti 🌸 <br>No quiero robar tu corazón... <br>quiero cuidarlo todos los días 💕`;
   }else{
     for(let i=0;i<30;i++){
       let boom=document.createElement("div");
@@ -380,7 +380,7 @@ function mostrarResultado(opcion){
       document.body.appendChild(boom);
       setTimeout(()=>boom.remove(),1000);
     }
-    msg.innerHTML=`🎯 MISIÓN RECONQUISTA ACTIVADA 🎯 <br><br>Objetivo: Conquistar el corazón de Sonia 💘 <br>Rendirse: Jamás 😎🔥`;
+    msg.innerHTML=`🎯 MISIÓN RECONQUISTA ACTIVADA 🎯 <br><br>Objetivo: Conquistar el corazón de Brunella 💘 <br>Rendirse: Jamás 😎🔥`;
   }
 
   mostrarPregunta3();
@@ -405,7 +405,7 @@ function respuestaPregunta3(opcion){
   localStorage.setItem("respuestaPregunta3", opcion);
 
   if(opcion === 'si'){
-    document.getElementById("tituloPrincipal").innerText = "Sonia aceptó 💖";
+    document.getElementById("tituloPrincipal").innerText = "Brunella aceptó 💖";
   }
   document.getElementById("botonesPregunta3").style.display='none';
 }
@@ -423,7 +423,7 @@ function restaurarPregunta3(){
     document.getElementById("tituloPregunta3").innerText="Responde si quieres 💌";
     document.getElementById("botonesPregunta3").style.display='block';
     document.getElementById("restaurar3").style.display='none';
-    document.getElementById("tituloPrincipal").innerText="Para Sonia 💖";
+    document.getElementById("tituloPrincipal").innerText="Para Brunella 💖";
     localStorage.removeItem("respuestaPregunta3");
   }else{
     alert("Código incorrecto ❌");
@@ -432,12 +432,12 @@ function restaurarPregunta3(){
 
 // ===== PANDA =====
 function abrirCarta(){
-  alert("Sonia 💌\n\nQuiero decirte que cada día me haces sonreír más... ❤️");
+  alert("Brunella 💌\n\nQuiero decirte que cada día me haces sonreír más... ❤️");
 }
 
 // ===== DESPEDIDA =====
 function lluviaFinal(){
-  document.getElementById("mensajeFinal").innerHTML="🌟 Te deseo un hermoso día, Sonia! 🫂🌈";
+  document.getElementById("mensajeFinal").innerHTML="🌟 Te deseo un hermoso día, Brunella! 🫂🌈";
   let emojis=['❤️','😍','🥰','🌻','🌼'];
   let fotos=['foto1.jpg','foto2.jpg'];
   for(let i=0;i<50;i++){
